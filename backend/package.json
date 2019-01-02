@@ -1,0 +1,36 @@
+{
+  "name": "backend",
+  "version": "0.0.1",
+  "description": "My IT blog Project",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kye139/react_blog.git"
+  },
+  "author": "kye139",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kye139/react-blog/issues"
+  },
+  "homepage": "https://github.com/kye139/react-blog#readme",
+  "dependencies": {
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "joi": "^14.3.1",
+    "morgan": "^1.9.1",
+    "mysql2": "^1.6.4",
+    "sequelize": "^4.42.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.11.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "nodemon": "^1.18.9"
+  }
+}
