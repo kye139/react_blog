@@ -1,0 +1,82 @@
+@import 'utils';
+
+form {
+    margin: 0 0 _size(element-margin) 0;
+}
+
+input[type="text"] {
+    @include vendor('appearance', 'none');
+		background: _palette(bg);
+		border-radius: _size(border-radius);
+		border: none;
+		border: solid 1px _palette(border);
+		color: inherit;
+		display: block;
+		outline: 0;
+		padding: 0 1em;
+		text-decoration: none;
+        width: 100%;
+        height: _size(element-height);
+
+		&:invalid {
+			box-shadow: none;
+		}
+
+		&:focus {
+			border-color: _palette(accent);
+			box-shadow: 0 0 0 1px _palette(accent);
+		}
+}
+
+::-webkit-input-placeholder {
+    color: _palette(fg-light) !important;
+    opacity: 1.0;
+}
+
+:-moz-placeholder {
+    color: _palette(fg-light) !important;
+    opacity: 1.0;
+}
+
+::-moz-placeholder {
+    color: _palette(fg-light) !important;
+    opacity: 1.0;
+}
+
+:-ms-input-placeholder {
+    color: _palette(fg-light) !important;
+    opacity: 1.0;
+}
+
+.formerize-placeholder {
+    color: _palette(fg-light) !important;
+    opacity: 1.0;
+}
+
+#search {
+    form {
+        @include icon;
+        position: relative;
+
+        &:before {
+            @include vendor('transform', 'scaleX(-1)');
+            color: _palette(fg);
+            content: '\f002';
+            cursor: default;
+            display: block;
+            font-size: 1.5em;
+            height: _size(element-height) / 1.375;
+            line-height: _size(element-height) / 1.375;
+            opacity: 0.325;
+            position: absolute;
+            right: 0;
+            text-align: center;
+            top: 0;
+            width: _size(element-height) / 1.375;
+        }
+
+        input[type="text"] {
+            padding-right: _size(element-height);
+        }
+    }
+}

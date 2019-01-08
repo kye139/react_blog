@@ -3,6 +3,7 @@ module.exports = (sequelize, DataTypes) => (
     title: {
       type: DataTypes.STRING(20),
       allowNull: false,
+      unique: true,
     }
   }, {
     timestamps: true

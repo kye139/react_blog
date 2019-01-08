@@ -9,5 +9,11 @@ module.exports = {
         "import/no-unresolved": 0,
         "quote-props": 0,
         "prefer-template": 0,
+        "guard-for-in": 0,
+        "no-restricted-syntax": 0,
+        "prefer-destructuring": 0,
+        "no-await-in-loop": 0,
+        "arrow-parens": 0,
+        "no-undef": 0,
     }
 };

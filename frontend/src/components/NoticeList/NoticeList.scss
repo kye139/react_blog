@@ -1,0 +1,52 @@
+@import 'utils';
+
+.table-wrapper {
+    -webkit-overflow-scrolling: touch;
+    overflow-x: auto;
+    
+    table {
+        margin: 0 0 _size(element-margin) 0;
+        width: 100%;
+
+        th {
+            color: _palette(fg-bold);
+            font-size: 0.9em;
+            font-weight: _font(weight-bold);
+            padding: 0 0.75em 0.75em 0.75em;
+            text-align: left;
+        }
+
+        thead {
+            border-bottom: solid 2px _palette(border);
+            
+            .notice-num {
+                width: 10%;
+            }
+
+            .notice-date {
+                width: 15%;
+            }
+        }
+
+        tbody {
+			tr {
+				border: solid 1px _palette(border);
+				border-left: 0;
+                border-right: 0;
+                cursor: pointer;
+                
+				&:nth-child(2n + 1) {
+					background-color: _palette(border-bg);
+                }
+                
+                &:hover {
+                    background-color: #eeeeee;
+                }
+			}
+        }
+        
+        td {
+			padding: 0.75em 0.75em;
+		}
+    }
+}

@@ -5,14 +5,17 @@ const morgan = require('morgan');
 const path = require('path');
 const session = require('express-session');
 const flash = require('connect-flash');
+const passport = require('passport');
 require('dotenv').config();
 const { sequelize } = require('./models');
+const passportConfig = require('./passport');
 
 const indexRouter = require('./routes');
 
 // 웹 애플리케이션 생성
 const app = express();
 sequelize.sync();
+passportConfig(passport);
 
 // 포트 번호 설정
 app.set('port', process.env.PORT || 8001);
@@ -33,6 +36,8 @@ app.use(session({
   }
 }));
 app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 
 // 라우터 연결
 app.use('/', indexRouter);

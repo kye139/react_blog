@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/kye139/react-blog#readme",
   "dependencies": {
+    "bcrypt": "^3.0.3",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
     "dotenv": "^6.2.0",
@@ -25,6 +26,9 @@
     "joi": "^14.3.1",
     "morgan": "^1.9.1",
     "mysql2": "^1.6.4",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "remove-markdown": "^0.3.0",
     "sequelize": "^4.42.0"
   },
   "devDependencies": {

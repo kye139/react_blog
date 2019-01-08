@@ -1,0 +1,47 @@
+@import 'utils';
+
+.notice-header {
+  @include padding(6em, 0);
+  border-top: solid 2px _palette(border);
+
+  &:first-of-type {
+    border-top: 0 !important;
+  }
+
+  @include breakpoint(xlarge) {
+    @include padding(5em, 0);
+  }
+
+  @include breakpoint(large) {
+    @include padding(4em, 0);
+  }
+
+  @include breakpoint(small) {
+    @include padding(3em, 0);
+  }
+
+  header {
+		&.major {
+      .row {       
+        width: 100%;
+
+        h2 {
+          padding: 0;
+        }
+
+        .notice-date {
+          float: right;
+          font-weight: bolder;
+          margin-top: 20px;
+          font-size: 14px;
+        }
+      }
+			> :last-child {
+				border-bottom: solid 3px _palette(accent);
+				display: inline-block;
+				margin: 0 0 _size(element-margin) 0;
+			 	padding: 0 0.75em 0.5em 0;
+			}
+    }
+  }
+}

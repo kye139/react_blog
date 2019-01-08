@@ -16,17 +16,10 @@ db.Tag = require('./tag')(sequelize, Sequelize);
 db.Comment = require('./comment')(sequelize, Sequelize);
 db.Notice = require('./notice')(sequelize, Sequelize);
 db.Link = require('./link')(sequelize, Sequelize);
-db.MainCategory = require('./maincategory')(sequelize, Sequelize);
-db.SubCategory = require('./subcategory')(sequelize, Sequelize);
+db.Category = require('./category')(sequelize, Sequelize);
 
-db.MainCategory.hasMany(db.Content, { onDelete: 'restrict' });
-db.Content.belongsTo(db.MainCategory);
-
-db.MainCategory.hasMany(db.SubCategory, { onDelete: 'restrict' });
-db.SubCategory.belongsTo(db.MainCategory);
-
-db.SubCategory.hasMany(db.Content, { onDelete: 'restrict' });
-db.Content.belongsTo(db.SubCategory);
+db.Category.hasMany(db.Content, { onDelete: 'restrict' });
+db.Content.belongsTo(db.Category);
 
 db.Content.belongsToMany(db.Tag, { through: 'ContentTag' });
 db.Tag.belongsToMany(db.Content, { through: 'ContentTag' });
