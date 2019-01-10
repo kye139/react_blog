@@ -23,6 +23,8 @@ const getClientEnvironment = require('./env');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin-alt');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
+const { styles } = require('@ckeditor/ckeditor5-dev-utils');
+const UglifyJsWebpackPlugin = require('uglifyjs-webpack-plugin');
 
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
@@ -317,6 +319,30 @@ module.exports = function(webpackEnv) {
             // smaller than specified limit in bytes as data URLs to avoid requests.
             // A missing `test` is equivalent to a match.
             {
+              test: /ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/,
+              use: [ 'raw-loader' ]
+            },
+            {
+              test: /ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css/,
+              use: [
+                {
+                  loader: 'style-loader',
+                  options: {
+                    singleton: true
+                  }
+                },
+                {
+                  loader: 'postcss-loader',
+                  options: styles.getPostCssConfig( {
+                    themeImporter: {
+                      themePath: require.resolve( '@ckeditor/ckeditor5-theme-lark' )
+                    },
+                    minify: true
+                  } )
+                }
+              ]
+            },
+            {
               test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
               loader: require.resolve('url-loader'),
               options: {
@@ -360,7 +386,10 @@ module.exports = function(webpackEnv) {
             // Unlike the application JS, we only compile the standard ES features.
             {
               test: /\.(js|mjs)$/,
-              exclude: /@babel(?:\/|\\{1,2})runtime/,
+              exclude: [
+                /@babel(?:\/|\\{1,2})runtime/,
+                /@ckeditor[\\/]ckeditor5-build-.*/
+              ],
               loader: require.resolve('babel-loader'),
               options: {
                 babelrc: false,
@@ -391,7 +420,10 @@ module.exports = function(webpackEnv) {
             // By default we support CSS Modules with the extension .module.css
             {
               test: cssRegex,
-              exclude: cssModuleRegex,
+              exclude: [
+                cssModuleRegex,
+                /ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css/
+              ],
               use: getStyleLoaders({
                 importLoaders: 1,
                 sourceMap: isEnvProduction && shouldUseSourceMap,
@@ -461,7 +493,13 @@ module.exports = function(webpackEnv) {
               // its runtime that would otherwise be processed through "file" loader.
               // Also exclude `html` and `json` extensions so they get processed
               // by webpacks internal loaders.
-              exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
+              exclude: [
+                /\.(js|mjs|jsx|ts|tsx)$/, 
+                /\.html$/, 
+                /\.json$/,
+                /ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/,
+                /ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css/
+              ],
               options: {
                 name: 'static/media/[name].[hash:8].[ext]',
               },
